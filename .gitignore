@@ -348,3 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/AppCountry/AppCountry/Views/CountryDetailPage.xaml.cs
+/AppCountry/AppCountry/Views/CountryDetailPage.xaml
+/AppCountry/AppCountry/Views/CountriesPage.xaml.cs
+/AppCountry/AppCountry/Views/CountriesPage.xaml
+/AppCountry/AppCountry/ViewModels/CountryDetailPageViewModel.cs
+/AppCountry/AppCountry/ViewModels/CountriesPageViewModel.cs
+/AppCountry/AppCountry/ItemViewModels/CountryItemViewModel.cs
