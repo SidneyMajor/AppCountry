@@ -8,14 +8,77 @@
              xmlns:ffimaeloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="true"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-             >
+            Title="Countries" >
 
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="5">
             <SearchBar Placeholder="SearchCountry"
                 SearchCommand="{Binding SearchCommand}"
                 Text="{Binding Search}"/>
-            <CollectionView ItemsSource="{Binding Countries}">
+            <StackLayout>
+
+                <ListView 
+                    BackgroundColor="White"
+                    HasUnevenRows="true"
+                    ItemsSource="{Binding Countries}"
+                    SeparatorVisibility="None">                   
+                    <ListView.ItemTemplate>
+                        <DataTemplate>                            
+                            <ViewCell>
+                                <Frame
+                                CornerRadius="20"
+                                BorderColor="Black"
+                                HasShadow="true"
+                                Margin="5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ffimaeloadingsvg:SvgCachedImage 
+                                        Grid.Column="0"
+                                        HeightRequest="30"
+                                        Source="{Binding Flag}"
+                                        WidthRequest="60">
+                                        </ffimaeloadingsvg:SvgCachedImage>
+                                        <StackLayout 
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+                                            <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Small"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Name}"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                            Text="{Binding Capital}"
+                                            TextColor="Black">
+                                            </Label>
+                                        </StackLayout>
+                                        <Image 
+                                        Grid.Column="2"
+                                        HorizontalOptions="End" 
+                                        WidthRequest="20"
+                                        Source="ic_more_vert">
+                                        </Image>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+
+
+
+
+            <!--<CollectionView ItemsSource="{Binding Countries}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -23,7 +86,7 @@
                     <DataTemplate>
                         <Grid>
                             <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectProductCommand}"/>
+                                <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
                             </Grid.GestureRecognizers>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -54,7 +117,7 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </CollectionView>-->
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Gear" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

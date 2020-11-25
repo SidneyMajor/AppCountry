@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AppCounty.Common.Services
@@ -17,28 +16,28 @@ namespace AppCounty.Common.Services
                 HttpClient client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase),
-                    
+
                 };
-                string url = $"{servicePrefix}{controller}"; 
+                string url = $"{servicePrefix}{controller}";
 
-                HttpResponseMessage response = await client.GetAsync(url); 
-                
-                string result = await response.Content.ReadAsStringAsync();
+                HttpResponseMessage response = await client.GetAsync(url);
 
-                if (!response.IsSuccessStatusCode) 
-                { 
-                    return new Response { IsSuccess = false, Message = result, }; 
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response { IsSuccess = false, Message = result, };
                 }
 
-                List<T> list = JsonConvert.DeserializeObject<List<T>>(result); 
-                
+                List<T> list = JsonConvert.DeserializeObject<List<T>>(result);
+
                 return new Response { IsSuccess = true, Result = list };
             }
-            catch (Exception ex) 
-            { 
+            catch (Exception ex)
+            {
                 return new Response { IsSuccess = false, Message = ex.Message };
             }
         }
     }
-    
+
 }

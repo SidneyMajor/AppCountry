@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace AppCounty.Common.Entities
@@ -10,7 +11,7 @@ namespace AppCounty.Common.Entities
 
         public string Alpha2Code { get; set; }
 
-       // public string Alpha3Code { get; set; }
+        public string Alpha3Code { get; set; }
 
         public string Capital { get; set; }
 
@@ -26,9 +27,14 @@ namespace AppCounty.Common.Entities
 
         public string Gini { get; set; }
 
-        //public List<string> Borders { get; set; }
+        public List<string> Borders { get; set; }
 
-        
+        public List<Currency> Currencies { get; set; }
+
+        public List<Language> Languages { get; set; }
+
+        public Translations Translations { get; set; }
+
         public string Flag { get; set; }
     }
 }

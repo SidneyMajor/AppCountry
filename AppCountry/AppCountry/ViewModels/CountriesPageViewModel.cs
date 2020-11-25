@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Essentials;
 
 namespace AppCountry.ViewModels
@@ -20,11 +21,15 @@ namespace AppCountry.ViewModels
 
         private bool _isRunning;
 
+       // private bool _isRefreshing;
+
         private string _search;
         private List<Country> _myCountries;
         private DelegateCommand _searchCommand;
 
         private ObservableCollection<CountryItemViewModel> _countries;
+
+       //private ObservableCollection<CountryItemViewModel> _bordersCountries;
 
         public CountriesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
@@ -46,6 +51,7 @@ namespace AppCountry.ViewModels
             {
                 SetProperty(ref _search, value);
                 ShowCountries();
+
             }
         }
 
@@ -57,13 +63,13 @@ namespace AppCountry.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
+        //public bool IsRefreshing
+        //{
+        //    get => _isRefreshing;
+        //    set => SetProperty(ref _isRefreshing, value);
+        //}
 
 
-        /*public ObservableCollection<Product> Products
-        {
-            get => _products;
-            set => SetProperty(ref _products, value);
-        }*/
 
 
         public ObservableCollection<CountryItemViewModel> Countries
@@ -73,50 +79,79 @@ namespace AppCountry.ViewModels
         }
 
 
+        /* public ObservableCollection<CountryItemViewModel> BordersCountries
+         {
+             get => _bordersCountries;
+             set => SetProperty(ref _bordersCountries, value);
+         }
+        */
+
+        //public ICommand RefreshCommand
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand(LoadCountriesAsync);
+        //    }
+        //}
+
 
         private async void LoadCountriesAsync()
         {
+             IsRunning = true;
             if (Connectivity.NetworkAccess != NetworkAccess.Internet)
             {
+                IsRunning = false;
                 await App.Current.MainPage.DisplayAlert("Erro", "Connection Error", "Accept");
+                await App.Current.MainPage.Navigation.PopAsync();
                 return;
             }
 
-            IsRunning = true;
 
-            string url = App.Current.Resources["UrlAPI"].ToString();
+            string url = "https://restcountries.eu";
             Response response = await _apiService.GetListAsync<Country>(
                 url,
                 "/rest",
-                "/v2");
+                "/v2/all");
 
-            IsRunning = false;
 
             if (!response.IsSuccess)
             {
+                IsRunning = false;
                 await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+
+                await App.Current.MainPage.Navigation.PopAsync();
                 return;
             }
 
             _myCountries = (List<Country>)response.Result;
+
+            IsRunning = false;
+
             ShowCountries();
+            
 
         }
 
 
-        /*private void ShowProducts()
+        /*private ObservableCollection<CountryItemViewModel> Borders(Country country)
         {
-            if (string.IsNullOrEmpty(Search))
+            BordersCountries = new ObservableCollection<CountryItemViewModel>();
+
+            foreach (var item in country.Borders)
             {
-                Products = new ObservableCollection<Product>(_myProducts);
-            }
-            else
-            {
-                Products = new ObservableCollection<Product>(_myProducts
-                    .Where(p => p.Name.ToLower().Contains(Search.ToLower())));
+                foreach (var obj in Countries)
+                {
+                    if (item.Equals(obj.Alpha3Code))
+                    {
+                        BordersCountries.Add(obj);
+
+                    }
+                }
             }
 
+            return BordersCountries;
         }*/
+
 
         private void ShowCountries()
         {
@@ -132,9 +167,16 @@ namespace AppCountry.ViewModels
                     Gini = c.Gini,
                     Area = c.Area,
                     Population = c.Population,
-                    Flag = c.Flag
+                    Flag = c.Flag,
+                    Translations = c.Translations,
+                    Currencies = c.Currencies,
+                    Languages = c.Languages,
+                    Borders =c.Borders,
+                    Alpha2Code = c.Alpha2Code,
+                    Alpha3Code = c.Alpha3Code,
+                    Demonym = c.Demonym
                 })
-                    .ToList());
+                    .ToList()) ;
             }
             else
             {
@@ -148,9 +190,16 @@ namespace AppCountry.ViewModels
                      Gini = c.Gini,
                      Area = c.Area,
                      Population = c.Population,
-                     Flag = c.Flag
+                     Flag = c.Flag,
+                     Translations = c.Translations,
+                     Currencies = c.Currencies,
+                     Languages = c.Languages,
+                     Borders = c.Borders,
+                     Alpha2Code = c.Alpha2Code,
+                     Alpha3Code = c.Alpha3Code,
+                     Demonym = c.Demonym
                  })
-                    .Where(p => p.Name.ToLower().Contains(Search.ToLower()))
+                    .Where(p => p.Name.ToLower().Contains(Search.ToLower()) || p.Capital.ToLower().Contains(Search.ToLower()))
                     .ToList());
             }
         }

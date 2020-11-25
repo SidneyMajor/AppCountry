@@ -19,7 +19,7 @@ namespace AppCountry
 
         protected override async void OnInitialized()
         {
-            SyncfusionLicenseProvider.RegisterLicense("MzA2MTU3QDMxMzgyZTMyMmUzMGI4Q0p0ZEYzaS9ORjJSNVkrL2hQSzlxOWFwMWxrMndYSHp6Tk11UE16VWM9");
+            SyncfusionLicenseProvider.RegisterLicense("MzU3OTIzQDMxMzgyZTMzMmUzMG9udjJqU2pqWFdKUWZkYzIyUEZSQmpDV1NIWkd3NFV6MTk2dEcwNUJ5OWM9");
 
             InitializeComponent();
 
