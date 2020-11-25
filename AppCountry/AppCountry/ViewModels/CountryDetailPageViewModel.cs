@@ -14,7 +14,7 @@ namespace AppCountry.ViewModels
 
         public CountryDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Country";
+            Title = "Country Information";
         }
 
         public Country Country

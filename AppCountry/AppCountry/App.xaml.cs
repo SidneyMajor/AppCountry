@@ -34,6 +34,10 @@ namespace AppCountry
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<CountriesPage, CountriesPageViewModel>();
             containerRegistry.RegisterForNavigation<CountryDetailPage, CountryDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<CountryTabPage>();
+            containerRegistry.RegisterForNavigation<CountryBordersPage>();
+            containerRegistry.RegisterForNavigation<CountryTranslationsPage>();
+
         }
     }
 }

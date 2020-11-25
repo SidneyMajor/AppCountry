@@ -79,7 +79,7 @@ namespace AppCountry.ItemViewModels
             };
 
 
-            await _navigationService.NavigateAsync(nameof(CountryDetailPage), parameters);
+            await _navigationService.NavigateAsync(nameof(CountryTabPage), parameters);
         }
 
 
