@@ -29,9 +29,9 @@ namespace AppCounty.Common.Entities
 
         public List<string> Borders { get; set; }
 
-        public List<Currency> Currencies { get; set; }
+        public ObservableCollection<Currency> Currencies { get; set; }
 
-        public List<Language> Languages { get; set; }
+        public ObservableCollection<Language> Languages { get; set; }
 
         public Translations Translations { get; set; }
 

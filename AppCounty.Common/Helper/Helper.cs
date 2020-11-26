@@ -8,5 +8,7 @@ namespace AppCounty.Common.Helper
    public static class Helper
     {
         public static List<Country> MyCountries { get; set; }
+
+        public static RootCovid MyRootCovid { get; set; }
     }
 }

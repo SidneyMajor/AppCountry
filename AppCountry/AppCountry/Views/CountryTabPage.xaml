@@ -2,12 +2,13 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabs="clr-namespace:AppCountry.Views"
-             x:Class="AppCountry.Views.CountryTabPage"            
-            Title="Country Information">
+             x:Class="AppCountry.Views.CountryTabPage"
+             Title="Country Information">
     <TabbedPage.Children>
         <tabs:CountryDetailPage/>
         <tabs:CountryBordersPage/>
         <tabs:CountryTranslationsPage/>
+        <tabs:CovidInfoPage/>
     </TabbedPage.Children>
     
 </TabbedPage>

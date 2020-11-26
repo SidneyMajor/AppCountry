@@ -29,9 +29,9 @@ namespace AppCounty.Common.Services
                     return new Response { IsSuccess = false, Message = result, };
                 }
 
-                List<T> list = JsonConvert.DeserializeObject<List<T>>(result);
+                T value = JsonConvert.DeserializeObject<T>(result);
 
-                return new Response { IsSuccess = true, Result = list };
+                return new Response { IsSuccess = true, Result = value };
             }
             catch (Exception ex)
             {

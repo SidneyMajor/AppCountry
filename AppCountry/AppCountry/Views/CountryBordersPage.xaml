@@ -4,70 +4,79 @@
              x:Class="AppCountry.Views.CountryBordersPage"
              xmlns:ffimaeloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              IconImageSource="ic_action_language.png"
-             Title="Borders">
-    <ContentPage.Content>
+             >
+    <ContentPage.Content >
+        <Frame 
+            Margin="10" 
+            HasShadow="True" 
+            HorizontalOptions="Center" 
+            BorderColor="Goldenrod" 
+            BackgroundColor="Azure" 
+            CornerRadius="10">
+            <ScrollView  >
 
-        <ScrollView>
-
-            <StackLayout>
-                <ListView 
-                    BackgroundColor="White"
+                <StackLayout>
+                    <ListView 
+                   
                     HasUnevenRows="true"
                     ItemsSource="{Binding Country.CountryBorders}"
                     SeparatorVisibility="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame
                                 CornerRadius="20"
-                                BorderColor="Black"
+                                BorderColor="DarkGoldenrod"
+                                BackgroundColor="WhiteSmoke"                               
                                 HasShadow="true"
                                 Margin="5">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
-                                    </Frame.GestureRecognizers>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <ffimaeloadingsvg:SvgCachedImage 
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
+                                        </Frame.GestureRecognizers>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ffimaeloadingsvg:SvgCachedImage 
                                         Grid.Column="0"
                                         HeightRequest="30"
                                         Source="{Binding Flag}"
                                         WidthRequest="60">
-                                        </ffimaeloadingsvg:SvgCachedImage>
-                                        <StackLayout 
+                                            </ffimaeloadingsvg:SvgCachedImage>
+                                            <StackLayout 
                                         Grid.Column="1"
                                         VerticalOptions="Center">
-                                            <Label 
+                                                <Label 
                                             FontAttributes="Bold"
                                             FontSize="Small"
                                             LineBreakMode="TailTruncation"
                                             Text="{Binding Name}"
                                             TextColor="Black">
-                                            </Label>
-                                            <Label 
+                                                </Label>
+                                                <Label 
                                             Text="{Binding Capital}"
                                             TextColor="Black">
-                                            </Label>
-                                        </StackLayout>
-                                        <Image 
+                                                </Label>
+                                            </StackLayout>
+                                            <Image 
                                         Grid.Column="2"
                                         HorizontalOptions="End" 
                                         WidthRequest="20"
                                         Source="ic_more_vert">
-                                        </Image>
-                                    </Grid>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                                            </Image>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
 
-        </ScrollView>
+            </ScrollView>
+        </Frame>
+       
        
 
     </ContentPage.Content>

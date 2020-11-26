@@ -40,10 +40,10 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <ffimaeloadingsvg:SvgCachedImage 
-                                        Grid.Column="0"
-                                        HeightRequest="30"
-                                        Source="{Binding Flag}"
-                                        WidthRequest="60">
+                                            Grid.Column="0"
+                                            HeightRequest="30"
+                                            Source="{Binding Flag}"
+                                            WidthRequest="60">
                                         </ffimaeloadingsvg:SvgCachedImage>
                                         <StackLayout 
                                         Grid.Column="1"

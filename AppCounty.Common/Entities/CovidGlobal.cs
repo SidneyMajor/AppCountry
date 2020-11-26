@@ -17,5 +17,7 @@ namespace AppCounty.Common.Entities
         public int NewRecovered { get; set; }
 
         public int TotalRecovered { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

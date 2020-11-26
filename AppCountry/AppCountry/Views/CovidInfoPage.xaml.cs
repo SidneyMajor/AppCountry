@@ -2,13 +2,11 @@
 
 namespace AppCountry.Views
 {
-    public partial class CountryDetailPage : ContentPage
+    public partial class CovidInfoPage : ContentPage
     {
-        public CountryDetailPage()
+        public CovidInfoPage()
         {
             InitializeComponent();
         }
-
-        
     }
 }

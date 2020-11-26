@@ -7,7 +7,8 @@
              x:Class="AppCountry.Views.CountryDetailPage"
              BackgroundColor="{StaticResource ColorBackground}"
              IconImageSource="ic_action_info.png"
-             Title="{Binding Title}">
+             >
+
 
     <ContentPage.Content>
         <ScrollView>
@@ -74,50 +75,113 @@
                     </StackLayout>
                 </Grid>
 
-                <!--Borders info-->
+                <!--other info-->
                 <BoxView BackgroundColor="Orange" Grid.Row="3"/>
-                <StackLayout Grid.Row="3" >
-                    <CollectionView ItemsSource="{Binding Country.CountryBorders}">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
-                                    </Grid.GestureRecognizers>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <ffimaeloadingsvg:SvgCachedImage Grid.Column="0"
-                                                    Aspect="AspectFill"
-                                                    Source="{Binding Flag}" 
-                                                    CacheDuration= "50"
-                                                    Margin="5"
-                                                    RetryCount= "3"
-                                                    RetryDelay= "600"
-                                                    WidthRequest="100"/>
-                                    <StackLayout Grid.Column="1"
-                                     VerticalOptions="Center">
-                                        <Label Text="{Binding Name}" 
-                                   FontAttributes="Bold"
-                                   FontSize="Medium"
-                                   LineBreakMode="TailTruncation" />
-                                        <Label Text="{Binding Capital}"
-                                   LineBreakMode="TailTruncation"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
-                                    </StackLayout>
-                                    <Image Grid.Column="2" 
-                               Source="ic_more_vert"/>
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                <StackLayout Grid.Row="3" Padding="5" >
+
+
+                    <StackLayout BindingContext="{Binding Country.CountryCurrencies}">
+                        <ListView 
+                            BackgroundColor="White"
+                            HasUnevenRows="true"
+                            BindingContext="{Binding Country.CountryCurrencies}"
+                            ItemsSource="{Binding Country.CountryCurrencies}"
+                            SeparatorVisibility="None" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label 
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            FontSize="Small"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Code}"
+                                            TextColor="Black">
+                                        </Label>
+                                        <Label
+                                            Grid.Column="1"
+                                            Text="{Binding Name}"
+                                            TextColor="Black"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold"
+                                            FontSize="Small">
+                                        </Label>
+                                        <Label
+                                            Grid.Column="2"
+                                            Text="{Binding Symbol}"
+                                            TextColor="Black"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold"
+                                            FontSize="Small">
+                                        </Label>
+
+                                    </Grid>
+
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <ListView 
+                            BackgroundColor="White"
+                            HasUnevenRows="true"
+                            BindingContext="{Binding Country.CountryLanguages}"
+                            ItemsSource="{Binding Country.CountryLanguages}"
+                            SeparatorVisibility="None" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label 
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            FontSize="Small"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Iso639_2}"
+                                            TextColor="Black">
+                                        </Label>
+                                        <Label
+                                            Grid.Column="1"
+                                            Text="{Binding Name}"
+                                            TextColor="Black"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold"
+                                            FontSize="Small">
+                                        </Label>
+                                        <Label
+                                            Grid.Column="2"
+                                            Text="{Binding NativeName}"
+                                            TextColor="Black"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Bold"
+                                            FontSize="Small">
+                                        </Label>
+
+                                    </Grid>
+
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
                 </StackLayout>
+
+
+
+
+
+
 
 
                 <!-- country  name -->
@@ -133,9 +197,9 @@
 
 
         </ScrollView>
-    </ContentPage.Content>   
+    </ContentPage.Content>
 
-      
+
 
 
 </ContentPage>

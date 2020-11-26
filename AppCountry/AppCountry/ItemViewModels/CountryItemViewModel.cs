@@ -3,6 +3,7 @@ using AppCounty.Common.Entities;
 using AppCounty.Common.Helper;
 using Prism.Commands;
 using Prism.Navigation;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,17 +13,31 @@ using System.Text;
 
 namespace AppCountry.ItemViewModels
 {
-    public class CountryItemViewModel: Country
+    public class CountryItemViewModel : Country
     {
         private readonly INavigationService _navigationService;
         private DelegateCommand _selectCountryCommand;
 
-        public ObservableCollection<CountryItemViewModel> CountryBorders { get; set; } = new ObservableCollection<CountryItemViewModel>();
+        public ObservableCollection<CountryItemViewModel> CountryBorders { get; set; }
+
+        public ObservableCollection<Currency> CountryCurrencies { get; set; }
+
+        public ObservableCollection<Language> CountryLanguages { get; set; }
+
+
+        public CovidGlobal CovidGlobal { get; set; }
+
+        public CovidCountry CovidCountry { get; set; }
 
         public CountryItemViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            
+            CountryBorders = new ObservableCollection<CountryItemViewModel>();
+            CountryCurrencies = new ObservableCollection<Currency>();
+            CountryLanguages = new ObservableCollection<Language>();
+            CovidCountry = new CovidCountry();
+            CovidGlobal = new CovidGlobal();
+
         }
 
         public DelegateCommand SelectCountryCommand => _selectCountryCommand ??
@@ -31,33 +46,11 @@ namespace AppCountry.ItemViewModels
 
 
 
-        private void GetBorders(Country country)
+        private void GetBorders(CountryItemViewModel country)
         {
-            //_bordersCountries = new ObservableCollection<CountryItemViewModel>();
 
             foreach (var item in country.Borders)
             {
-
-               // CountryBorders = new ObservableCollection<CountryItemViewModel>(Helper.MyCountries.Select(c =>
-               //new CountryItemViewModel(_navigationService)
-               //{
-               //    Name = c.Name,
-               //    Capital = c.Capital,
-               //    Region = c.Region,
-               //    Subregion = c.Subregion,
-               //    Gini = c.Gini,
-               //    Area = c.Area,
-               //    Population = c.Population,
-               //    Flag = c.Flag,
-               //    Translations = c.Translations,
-               //    Currencies = c.Currencies,
-               //    Languages = c.Languages,
-               //    Borders = c.Borders,
-               //    Alpha2Code = c.Alpha2Code,
-               //    Alpha3Code = c.Alpha3Code,
-               //    Demonym = c.Demonym
-               //}).Where(c=> c.Alpha3Code==item).ToList());
-
                 foreach (var c in Helper.MyCountries)
                 {
                     if (item.Equals(c.Alpha3Code))
@@ -86,13 +79,13 @@ namespace AppCountry.ItemViewModels
                     }
                 }
             }
-            
+
         }
 
 
         private async void SelectCountryAsync()
         {
-            if (this.Area==null)
+            if (this.Area == null)
             {
                 this.Area = 0.0;
             }
@@ -114,9 +107,15 @@ namespace AppCountry.ItemViewModels
 
             this.GetBorders(this);
 
+            this.GeTInfoCovid(this);
+
+            this.CountryCurrencies = this.Currencies;
+
+            this.CountryLanguages = this.Languages;
+
             NavigationParameters parameters = new NavigationParameters
             {
-                
+
                { "country", this },
             };
 
@@ -124,7 +123,26 @@ namespace AppCountry.ItemViewModels
             await _navigationService.NavigateAsync(nameof(CountryTabPage), parameters);
         }
 
+        private void GeTInfoCovid(CountryItemViewModel countryItemViewModel)
+        {
+            if (Helper.MyRootCovid != null)
+            {
+                if (Helper.MyRootCovid.Countries.Count != 0)
+                {
+                    var infocovid = Helper.MyRootCovid.Countries.SingleOrDefault(c => c.CountryCode == countryItemViewModel.Alpha2Code);
+                    if (infocovid != null)
+                    {
+                        CovidCountry = infocovid;
+                    }
+                       
+                }
 
+                if (!Helper.MyRootCovid.Global.Equals(null))
+                {
+                    CovidGlobal = Helper.MyRootCovid.Global;
+                }
 
+            }
+        }
     }
 }

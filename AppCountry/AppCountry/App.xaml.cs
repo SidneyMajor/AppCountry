@@ -29,15 +29,23 @@ namespace AppCountry
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
+
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<CountriesPage, CountriesPageViewModel>();
-            containerRegistry.RegisterForNavigation<CountryDetailPage>();
+
+            containerRegistry.RegisterForNavigation<CountriesPage, CountriesPageViewModel>(); 
+            
             containerRegistry.RegisterForNavigation<CountryTabPage, CountryDetailPageViewModel>();
+
+            containerRegistry.RegisterForNavigation<CountryDetailPage>();
+
             containerRegistry.RegisterForNavigation<CountryBordersPage>();
+
             containerRegistry.RegisterForNavigation<CountryTranslationsPage>();
 
+            containerRegistry.RegisterForNavigation<CovidInfoPage>();
         }
     }
 }

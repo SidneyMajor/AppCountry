@@ -38,10 +38,9 @@ namespace AppCountry.ViewModels
             _apiService = apiService;
             Title = "Country";
             LoadCountriesAsync();
-
         }
 
-
+       
         public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(ShowCountries));
 
 
@@ -51,6 +50,8 @@ namespace AppCountry.ViewModels
             set
             {
                 SetProperty(ref _search, value);
+               
+
                 ShowCountries();
 
             }
@@ -109,7 +110,7 @@ namespace AppCountry.ViewModels
 
 
             string url = "https://restcountries.eu";
-            Response response = await _apiService.GetListAsync<Country>(
+            Response response = await _apiService.GetListAsync<List<Country>>(
                 url,
                 "/rest",
                 "/v2/all");
@@ -126,6 +127,9 @@ namespace AppCountry.ViewModels
 
             Helper.MyCountries = (List<Country>)response.Result;
 
+            LoadCovidInfoAsync();
+
+
             IsRunning = false;
 
             ShowCountries();
@@ -134,24 +138,28 @@ namespace AppCountry.ViewModels
         }
 
 
-        /*private ObservableCollection<CountryItemViewModel> Borders(Country country)
+        private async void LoadCovidInfoAsync()
         {
-            BordersCountries = new ObservableCollection<CountryItemViewModel>();
+            string url = "https://api.covid19api.com";
+            Response response = await _apiService.GetListAsync<RootCovid>(
+                url,
+                "",
+                "/summary");
 
-            foreach (var item in country.Borders)
+            if (!response.IsSuccess)
             {
-                foreach (var obj in Countries)
-                {
-                    if (item.Equals(obj.Alpha3Code))
-                    {
-                        BordersCountries.Add(obj);
+                IsRunning = false;
+                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
 
-                    }
-                }
+                await App.Current.MainPage.Navigation.PopAsync();
+                return;
             }
 
-            return BordersCountries;
-        }*/
+            Helper.MyRootCovid = (RootCovid)response.Result;
+
+        }
+
+
 
 
         private void ShowCountries()
