@@ -1,10 +1,12 @@
 ﻿using AppCountry.Views;
 using AppCounty.Common.Entities;
+using AppCounty.Common.Helper;
 using Prism.Commands;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -15,11 +17,12 @@ namespace AppCountry.ItemViewModels
         private readonly INavigationService _navigationService;
         private DelegateCommand _selectCountryCommand;
 
-        //public new ObservableCollection<CountryItemViewModel> Borders { get; set; } = new ObservableCollection<CountryItemViewModel>();
+        public ObservableCollection<CountryItemViewModel> CountryBorders { get; set; } = new ObservableCollection<CountryItemViewModel>();
 
         public CountryItemViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
+            
         }
 
         public DelegateCommand SelectCountryCommand => _selectCountryCommand ??
@@ -28,24 +31,63 @@ namespace AppCountry.ItemViewModels
 
 
 
-        //private ObservableCollection<Country> Borders(Country country)
-        //{
-        //   _bordersCountries = new ObservableCollection<Country>();
+        private void GetBorders(Country country)
+        {
+            //_bordersCountries = new ObservableCollection<CountryItemViewModel>();
 
-        //    foreach (var item in country.Borders)
-        //    {
-        //        foreach (var obj in Countries)
-        //        {
-        //            if (item.Equals(obj.Alpha3Code))
-        //            {
-        //                _bordersCountries.Add(obj);
+            foreach (var item in country.Borders)
+            {
 
-        //            }
-        //        }
-        //    }
+               // CountryBorders = new ObservableCollection<CountryItemViewModel>(Helper.MyCountries.Select(c =>
+               //new CountryItemViewModel(_navigationService)
+               //{
+               //    Name = c.Name,
+               //    Capital = c.Capital,
+               //    Region = c.Region,
+               //    Subregion = c.Subregion,
+               //    Gini = c.Gini,
+               //    Area = c.Area,
+               //    Population = c.Population,
+               //    Flag = c.Flag,
+               //    Translations = c.Translations,
+               //    Currencies = c.Currencies,
+               //    Languages = c.Languages,
+               //    Borders = c.Borders,
+               //    Alpha2Code = c.Alpha2Code,
+               //    Alpha3Code = c.Alpha3Code,
+               //    Demonym = c.Demonym
+               //}).Where(c=> c.Alpha3Code==item).ToList());
 
-        //    return _bordersCountries;
-        //}
+                foreach (var c in Helper.MyCountries)
+                {
+                    if (item.Equals(c.Alpha3Code))
+                    {
+                        var border = new CountryItemViewModel(_navigationService)
+                        {
+                            Name = c.Name,
+                            Capital = c.Capital,
+                            Region = c.Region,
+                            Subregion = c.Subregion,
+                            Gini = c.Gini,
+                            Area = c.Area,
+                            Population = c.Population,
+                            Flag = c.Flag,
+                            Translations = c.Translations,
+                            Currencies = c.Currencies,
+                            Languages = c.Languages,
+                            Borders = c.Borders,
+                            Alpha2Code = c.Alpha2Code,
+                            Alpha3Code = c.Alpha3Code,
+                            Demonym = c.Demonym
+                        };
+
+                        CountryBorders.Add(border);
+
+                    }
+                }
+            }
+            
+        }
 
 
         private async void SelectCountryAsync()
@@ -70,7 +112,7 @@ namespace AppCountry.ItemViewModels
                 this.Subregion = "Not Available";
             }
 
-            
+            this.GetBorders(this);
 
             NavigationParameters parameters = new NavigationParameters
             {

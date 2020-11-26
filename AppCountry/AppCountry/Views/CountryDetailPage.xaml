@@ -76,8 +76,8 @@
 
                 <!--Borders info-->
                 <BoxView BackgroundColor="Orange" Grid.Row="3"/>
-                <StackLayout Grid.Row="3">
-                    <CollectionView ItemsSource="{Binding Country.BordersCountry}">
+                <StackLayout Grid.Row="3" >
+                    <CollectionView ItemsSource="{Binding Country.CountryBorders}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Vertical"/>
                         </CollectionView.ItemsLayout>

@@ -1,5 +1,6 @@
 ﻿using AppCountry.ItemViewModels;
 using AppCounty.Common.Entities;
+using AppCounty.Common.Helper;
 using AppCounty.Common.Responses;
 using AppCounty.Common.Services;
 using Prism.Commands;
@@ -24,7 +25,7 @@ namespace AppCountry.ViewModels
        // private bool _isRefreshing;
 
         private string _search;
-        private List<Country> _myCountries;
+        //private List<Country> _myCountries;
         private DelegateCommand _searchCommand;
 
         private ObservableCollection<CountryItemViewModel> _countries;
@@ -123,7 +124,7 @@ namespace AppCountry.ViewModels
                 return;
             }
 
-            _myCountries = (List<Country>)response.Result;
+            Helper.MyCountries = (List<Country>)response.Result;
 
             IsRunning = false;
 
@@ -157,7 +158,7 @@ namespace AppCountry.ViewModels
         {
             if (string.IsNullOrEmpty(Search))
             {
-                Countries = new ObservableCollection<CountryItemViewModel>(_myCountries.Select(c =>
+                Countries = new ObservableCollection<CountryItemViewModel>(Helper.MyCountries.Select(c =>
                 new CountryItemViewModel(_navigationService)
                 {
                     Name = c.Name,
@@ -180,7 +181,7 @@ namespace AppCountry.ViewModels
             }
             else
             {
-                Countries = new ObservableCollection<CountryItemViewModel>(_myCountries.Select(c =>
+                Countries = new ObservableCollection<CountryItemViewModel>(Helper.MyCountries.Select(c =>
                  new CountryItemViewModel(_navigationService)
                  {
                      Name = c.Name,

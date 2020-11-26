@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using AppCounty.Common.Entities;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -10,6 +11,7 @@ namespace AppCountry.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+
         public MainPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {

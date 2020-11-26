@@ -33,8 +33,8 @@ namespace AppCountry
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<CountriesPage, CountriesPageViewModel>();
-            containerRegistry.RegisterForNavigation<CountryDetailPage, CountryDetailPageViewModel>();
-            containerRegistry.RegisterForNavigation<CountryTabPage>();
+            containerRegistry.RegisterForNavigation<CountryDetailPage>();
+            containerRegistry.RegisterForNavigation<CountryTabPage, CountryDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<CountryBordersPage>();
             containerRegistry.RegisterForNavigation<CountryTranslationsPage>();
 
