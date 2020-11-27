@@ -1,202 +1,205 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             xmlns:ffimaeloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             x:Class="AppCountry.Views.CountryDetailPage"
-             BackgroundColor="{StaticResource ColorBackground}"
-             IconImageSource="ic_action_info.png"
-             >
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:prism="http://prismlibrary.com"
+                 prism:ViewModelLocator.AutowireViewModel="True"
+                 xmlns:ffimaeloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                 x:Class="AppCountry.Views.CountryDetailPage"
+                 IconImageSource="icons8_info.ico"
+                 xmlns:syncfusions="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                 xmlns:syncfusionExpand="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+                 BackgroundColor="Silver">
 
 
-    <ContentPage.Content>
-        <ScrollView>
+    <ContentPage.Content >
+        <Frame
+                HasShadow="True" 
+                HorizontalOptions="Center" 
+                BorderColor="Brown" 
+                CornerRadius="30"
+                BackgroundColor="Azure">
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="2*"/>
+
+
 
                 </Grid.RowDefinitions>
+
                 <!-- country image-->
-                <BoxView BackgroundColor="Yellow" Grid.Row="0"/>
-                <ffimaeloadingsvg:SvgCachedImage 
+                <ffimaeloadingsvg:SvgCachedImage Grid.Row="0"
                                                     Aspect="Fill"
                                                     Source="{Binding Country.Flag}" 
                                                     CacheDuration= "50"
-                                                    HeightRequest="200"/>
-                <!-- country capital name -->
-                <Grid  Grid.Row="1" Padding="0,50,0,0" BackgroundColor="Azure">
+                                                    HeightRequest="200"
+                        ErrorPlaceholder="not_pictured.png">
+
+                </ffimaeloadingsvg:SvgCachedImage>
+
+
+
+                <!-- country info -->
+                <Grid  Grid.Row="1" Padding="0,40" BackgroundColor="Azure">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <StackLayout Grid.Column="0" Margin="10,0">
-                        <Label Text="{Binding Country.Capital}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
+
+
+                    <StackLayout Grid.Column="0" Grid.Row="0" >
+                        <Label Text="{Binding Country.Capital, TargetNullValue='Not Available'}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
                         <Label Text="Capital" FontAttributes="Bold"  HorizontalTextAlignment="Center"/>
 
                     </StackLayout>
-                    <StackLayout Grid.Column="1" Margin="25,0">
-                        <Label Text="{Binding Country.Region}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
+                    <StackLayout Grid.Column="1" Grid.Row="0" >
+                        <Label Text="{Binding Country.Region,TargetNullValue='Not Available'}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
                         <Label Text="Region" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
                     </StackLayout>
-                    <StackLayout Grid.Column="2" >
-                        <Label Text="{Binding Country.Subregion}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
+                    <StackLayout Grid.Column="2" Grid.Row="0">
+                        <Label Text="{Binding Country.Subregion,TargetNullValue='Not Available'}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
                         <Label Text="Subregion" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                     </StackLayout>
-                </Grid>
 
-                <!-- country  info -->
-                <Grid Grid.Row="2" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackLayout Grid.Column="0">
-                        <Label Text="{Binding Country.Population}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
-                        <Label Text="# Population" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <StackLayout Grid.Column="0" Grid.Row="1">
+                        <Label Text="{Binding Country.Population,TargetNullValue='Not Available'}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center" Margin="0,4"/>
+                        <Label Text="#Population" FontAttributes="Bold" HorizontalTextAlignment="Center" />
 
                     </StackLayout>
-                    <StackLayout Grid.Column="1" >
-                        <Label Text="{Binding Country.Area}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
+                    <StackLayout Grid.Column="1" Grid.Row="1">
+                        <Label Text="{Binding Country.Area,TargetNullValue='Not Available'}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"  Margin="0,4"/>
                         <Label Text="# Area" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
 
                     </StackLayout>
-                    <StackLayout Grid.Column="2" >
-                        <Label Text="{Binding Country.Gini}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"/>
+                    <StackLayout Grid.Column="2" Grid.Row="1" >
+                        <Label Text="{Binding Country.Gini,TargetNullValue='Not Available'}"  LineBreakMode="TailTruncation" HorizontalTextAlignment="Center"  Margin="0,4"/>
                         <Label Text="# Gini" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                     </StackLayout>
                 </Grid>
 
                 <!--other info-->
-                <BoxView BackgroundColor="Orange" Grid.Row="3"/>
-                <StackLayout Grid.Row="3" Padding="5" >
 
-
-                    <StackLayout BindingContext="{Binding Country.CountryCurrencies}">
-                        <ListView 
-                            BackgroundColor="White"
-                            HasUnevenRows="true"
-                            BindingContext="{Binding Country.CountryCurrencies}"
-                            ItemsSource="{Binding Country.CountryCurrencies}"
-                            SeparatorVisibility="None" >
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="3*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label 
-                                            Grid.Column="0"
-                                            FontAttributes="Bold"
-                                            FontSize="Small"
-                                            LineBreakMode="TailTruncation"
-                                            Text="{Binding Code}"
-                                            TextColor="Black">
-                                        </Label>
-                                        <Label
-                                            Grid.Column="1"
-                                            Text="{Binding Name}"
-                                            TextColor="Black"
-                                            LineBreakMode="TailTruncation"
-                                            FontAttributes="Bold"
-                                            FontSize="Small">
-                                        </Label>
-                                        <Label
-                                            Grid.Column="2"
-                                            Text="{Binding Symbol}"
-                                            TextColor="Black"
-                                            LineBreakMode="TailTruncation"
-                                            FontAttributes="Bold"
-                                            FontSize="Small">
-                                        </Label>
-
-                                    </Grid>
-
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
+                <ScrollView Grid.Row="2" BackgroundColor="Azure" Margin="0,10,0,0" VerticalOptions="FillAndExpand">
 
                     <StackLayout>
-                        <ListView 
-                            BackgroundColor="White"
-                            HasUnevenRows="true"
-                            BindingContext="{Binding Country.CountryLanguages}"
-                            ItemsSource="{Binding Country.CountryLanguages}"
-                            SeparatorVisibility="None" >
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="3*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                        <syncfusionExpand:SfExpander x:Name="expanderCurrencies" HeaderBackgroundColor="PaleVioletRed" IconColor="Azure" >
+                            <syncfusionExpand:SfExpander.Header>
+                                <Grid>
+                                    <Label TextColor="Azure" Text="Currencies" FontSize="Medium" FontAttributes="Bold"  HeightRequest="50" VerticalTextAlignment="Center"/>
+                                </Grid>
+                            </syncfusionExpand:SfExpander.Header>
+                            <syncfusionExpand:SfExpander.Content>
 
-                                        <Label 
-                                            Grid.Column="0"
-                                            FontAttributes="Bold"
-                                            FontSize="Small"
-                                            LineBreakMode="TailTruncation"
-                                            Text="{Binding Iso639_2}"
-                                            TextColor="Black">
-                                        </Label>
-                                        <Label
-                                            Grid.Column="1"
-                                            Text="{Binding Name}"
-                                            TextColor="Black"
-                                            LineBreakMode="TailTruncation"
-                                            FontAttributes="Bold"
-                                            FontSize="Small">
-                                        </Label>
-                                        <Label
-                                            Grid.Column="2"
-                                            Text="{Binding NativeName}"
-                                            TextColor="Black"
-                                            LineBreakMode="TailTruncation"
-                                            FontAttributes="Bold"
-                                            FontSize="Small">
-                                        </Label>
+                                <syncfusions:SfListView x:Name="listViewCurrencies" 
+                                    ItemsSource="{Binding Country.CountryCurrencies}"
+                                    >
+                                    <syncfusions:SfListView.ItemTemplate>
+                                        <DataTemplate>
 
-                                    </Grid>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                                <Label 
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="Small"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding Code}"
+                                                TextColor="Black">
+                                                </Label>
+                                                <Label
+                                                Grid.Column="1"
+                                                Text="{Binding Name}"
+                                                TextColor="Black"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold"
+                                                FontSize="Small">
+                                                </Label>
+                                                <Label
+                                                Grid.Column="2"
+                                                Text="{Binding Symbol}"
+                                                TextColor="Black"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold"
+                                                FontSize="Small">
+                                                </Label>
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </syncfusions:SfListView.ItemTemplate>
+                                </syncfusions:SfListView>
+
+                            </syncfusionExpand:SfExpander.Content>
+
+                        </syncfusionExpand:SfExpander>
+
+                        <syncfusionExpand:SfExpander x:Name="expanderLangueges" IconColor="Azure" HeaderBackgroundColor="MediumVioletRed">
+                            <syncfusionExpand:SfExpander.Header>
+                                <Grid>
+                                    <Label TextColor="azure" Text="Langueges" FontSize="Medium" FontAttributes="Bold"  HeightRequest="50" VerticalTextAlignment="Center"/>
+                                </Grid>
+                            </syncfusionExpand:SfExpander.Header>
+                            <syncfusionExpand:SfExpander.Content>
+                                <ScrollView>
+                                    <syncfusions:SfListView x:Name="listViewLanguages" 
+                                    ItemsSource="{Binding Country.CountryLanguages}"
+
+                                    >
+                                        <syncfusions:SfListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="3*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label 
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="Small"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding Iso639_2}"
+                                                TextColor="Black">
+                                                    </Label>
+                                                    <Label
+                                                Grid.Column="1"
+                                                Text="{Binding Name}"
+                                                TextColor="Black"
+                                                LineBreakMode="TailTruncation"
+                                                FontAttributes="Bold"
+                                                FontSize="Small">
+                                                    </Label>
+
+                                                </Grid>
+
+                                            </DataTemplate>
+                                        </syncfusions:SfListView.ItemTemplate>
+                                    </syncfusions:SfListView>
+                                </ScrollView>
+                            </syncfusionExpand:SfExpander.Content>
+
+                        </syncfusionExpand:SfExpander>
                     </StackLayout>
-                </StackLayout>
-
-
-
-
-
-
+                </ScrollView>
 
 
                 <!-- country  name -->
                 <StackLayout>
                     <Label Text="{Binding Country.Name }" FontSize="Small" TextColor="Black" FontAttributes="Bold" 
-               BackgroundColor="Azure" HorizontalOptions="Center"
-                VerticalOptions="End" TranslationY="200"/>
+                BackgroundColor="Azure" HorizontalOptions="Center"
+                VerticalOptions="Start" TranslationY="130"/>
                 </StackLayout>
-
-
-
             </Grid>
+        </Frame>
 
-
-        </ScrollView>
     </ContentPage.Content>
 
 

@@ -9,6 +9,6 @@ namespace AppCountry.Views
             InitializeComponent();
         }
 
-        
+
     }
 }

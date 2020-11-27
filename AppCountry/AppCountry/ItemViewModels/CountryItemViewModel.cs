@@ -24,6 +24,11 @@ namespace AppCountry.ItemViewModels
 
         public ObservableCollection<Language> CountryLanguages { get; set; }
 
+        public bool HasBorders { get; set; }
+        public bool HasNoBorders { get; set; }
+
+        public bool HasInfoGovid { get; set; }
+        public bool HasNoInfoGovid { get; set; }
 
         public CovidGlobal CovidGlobal { get; set; }
 
@@ -32,12 +37,11 @@ namespace AppCountry.ItemViewModels
         public CountryItemViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            CountryBorders = new ObservableCollection<CountryItemViewModel>();
-            CountryCurrencies = new ObservableCollection<Currency>();
-            CountryLanguages = new ObservableCollection<Language>();
-            CovidCountry = new CovidCountry();
-            CovidGlobal = new CovidGlobal();
-
+            this.CountryBorders = new ObservableCollection<CountryItemViewModel>();
+            this.CountryCurrencies = new ObservableCollection<Currency>();
+            this.CountryLanguages = new ObservableCollection<Language>();
+            this.CovidCountry = new CovidCountry();
+            this.CovidGlobal = new CovidGlobal();  
         }
 
         public DelegateCommand SelectCountryCommand => _selectCountryCommand ??
@@ -48,7 +52,7 @@ namespace AppCountry.ItemViewModels
 
         private void GetBorders(CountryItemViewModel country)
         {
-
+            this.CountryBorders = new ObservableCollection<CountryItemViewModel>();
             foreach (var item in country.Borders)
             {
                 foreach (var c in Helper.MyCountries)
@@ -80,31 +84,13 @@ namespace AppCountry.ItemViewModels
                 }
             }
 
+
         }
 
 
         private async void SelectCountryAsync()
         {
-            if (this.Area == null)
-            {
-                this.Area = 0.0;
-            }
-
-            if (string.IsNullOrEmpty(this.Gini))
-            {
-                this.Gini = "Not Available";
-            }
-
-            if (string.IsNullOrEmpty(this.Capital))
-            {
-                this.Capital = "Not Available";
-            }
-
-            if (string.IsNullOrEmpty(this.Subregion))
-            {
-                this.Subregion = "Not Available";
-            }
-
+                      
             this.GetBorders(this);
 
             this.GeTInfoCovid(this);
@@ -112,6 +98,12 @@ namespace AppCountry.ItemViewModels
             this.CountryCurrencies = this.Currencies;
 
             this.CountryLanguages = this.Languages;
+
+            this.HasBorders = CountryBorders.Any();
+
+            this.HasNoBorders = !this.HasBorders;
+
+            this.HasNoInfoGovid = !this.HasInfoGovid;
 
             NavigationParameters parameters = new NavigationParameters
             {
@@ -134,15 +126,21 @@ namespace AppCountry.ItemViewModels
                     {
                         CovidCountry = infocovid;
                     }
-                       
+                    else
+                        CovidCountry.Date = DateTime.Now.Date;
+
                 }
 
                 if (!Helper.MyRootCovid.Global.Equals(null))
                 {
                     CovidGlobal = Helper.MyRootCovid.Global;
+                    CovidGlobal.Date = Helper.MyRootCovid.Date;
                 }
 
+                this.HasInfoGovid = true;
             }
+            else
+                this.HasInfoGovid = false;
         }
     }
 }

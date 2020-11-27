@@ -140,23 +140,21 @@ namespace AppCountry.ViewModels
 
         private async void LoadCovidInfoAsync()
         {
-            string url = "https://api.covid19api.com";
-            Response response = await _apiService.GetListAsync<RootCovid>(
-                url,
-                "",
-                "/summary");
+             string url = "https://api.covid19api.com";
+                Response response = await _apiService.GetListAsync<RootCovid>(
+                    url,
+                    "",
+                    "/summary");
 
-            if (!response.IsSuccess)
-            {
-                IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                if (!response.IsSuccess)
+                {
+                    IsRunning = false;
+                    await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                   
+                }
 
-                await App.Current.MainPage.Navigation.PopAsync();
-                return;
-            }
-
-            Helper.MyRootCovid = (RootCovid)response.Result;
-
+                Helper.MyRootCovid = (RootCovid)response.Result;
+           
         }
 
 
@@ -169,10 +167,10 @@ namespace AppCountry.ViewModels
                 Countries = new ObservableCollection<CountryItemViewModel>(Helper.MyCountries.Select(c =>
                 new CountryItemViewModel(_navigationService)
                 {
-                    Name = c.Name,
-                    Capital = c.Capital,
-                    Region = c.Region,
-                    Subregion = c.Subregion,
+                    Name = !string.IsNullOrEmpty(c.Name) ? c.Name : "Not Available",
+                    Capital = !string.IsNullOrEmpty(c.Capital) ? c.Capital : "Not Available",
+                    Region = !string.IsNullOrEmpty(c.Region) ? c.Region : "Not Available",
+                    Subregion = !string.IsNullOrEmpty(c.Subregion) ? c.Subregion : "Not Available",
                     Gini = c.Gini,
                     Area = c.Area,
                     Population = c.Population,

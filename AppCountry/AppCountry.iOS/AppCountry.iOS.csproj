@@ -201,7 +201,19 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.3.0.51</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Expander">
+      <Version>18.3.0.51</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator.IOS">
+      <Version>18.3.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel">
+      <Version>18.3.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel.IOS">
+      <Version>18.3.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
       <Version>18.3.0.51</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRotator.IOS">
@@ -252,6 +264,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icons8_coronavirus.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\not_pictured.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

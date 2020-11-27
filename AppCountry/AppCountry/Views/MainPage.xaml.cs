@@ -1,4 +1,5 @@
-﻿namespace AppCountry.Views
+﻿
+namespace AppCountry.Views
 {
     public partial class MainPage
     {

@@ -1,170 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppCountry.Views.CountryTranslationsPage"
-             IconImageSource="ic_action_translate.png"
-             >
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="AppCountry.Views.CountryTranslationsPage"
+                 IconImageSource="icons8_translation.ico"
+                 BackgroundColor="Silver">
     <ContentPage.Content>
-        <StackLayout Padding="5" HorizontalOptions="CenterAndExpand" BackgroundColor="Silver">
-            <Frame Margin="10" HasShadow="True" HorizontalOptions="Center" BorderColor="Blue" BackgroundColor="Azure"  CornerRadius="20">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
+        <StackLayout
+            
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand">
+            <Frame
+                    HeightRequest="900"
+                    HasShadow="True" 
+                    HorizontalOptions="Center" 
+                    BorderColor="RosyBrown" 
+                    BackgroundColor="Azure"  
+                    CornerRadius="30">
+                <StackLayout >
+                    <Grid Padding="10" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <Label HorizontalOptions="StartAndExpand"
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Text="German: "
-                     FontSize="Medium"
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                    Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.De}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label 
-                        HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    Text="Spanish: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                     Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Es}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label  HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                     Grid.Column="0"
-                    Grid.Row="2"
-                    Text= "French: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                    Padding="2"                    
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Fr}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label  HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="3"
-                    Text="Japanese: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                       Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="3"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Ja}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label  HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="4"
-                    Text="Italian: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                       Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.It}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label  HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="5"
-                    Text="Brazilian: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                       Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="5"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Br}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label  HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="6"
-                    Text="Portuguese: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                       Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="6"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Pt}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label  HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="7"
-                    Text="Dutch: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                       Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="7"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Nl}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label  HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="8"
-                    Text="Croatian: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                       Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="8"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Hr}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                    <Label   HorizontalOptions="StartAndExpand" 
-                        FontSize="Medium"
-                    Grid.Column="0"
-                    Grid.Row="9"
-                    Text="Persian: "
-                    TextColor="Black">
-                    </Label>
-                    <Label HorizontalOptions="CenterAndExpand"
-                       Padding="2"
-                    Grid.Column="1"
-                    Grid.Row="9"
-                    FontAttributes="Bold"
-                    Text="{Binding Country.Translations.Fa}"
-                    TextColor="Black"  LineBreakMode="TailTruncation">
-                    </Label>
-                </Grid>
+
+                        <Label
+                         HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.De, StringFormat='German: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label
+                            HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="1"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Es, StringFormat='Spanish: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label
+                            HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="2"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Fr, StringFormat='French: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+
+                        <Label 
+                            HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="3"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Ja, StringFormat='Japanese: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="4"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.It, StringFormat='Italian: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="5"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Br, StringFormat='Brazilian: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="6"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Pt, StringFormat='Portuguese: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="7"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Nl, StringFormat='Dutch: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="8"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Hr, StringFormat='Croatian: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+
+                        <Label HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        Grid.Row="9"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Translations.Fa, StringFormat='Persian: {0}'}"
+                        TextColor="Black"  
+                        LineBreakMode="WordWrap">
+                        </Label>
+                    </Grid>
+
+                   
+                </StackLayout>
+                
             </Frame>
 
         </StackLayout>

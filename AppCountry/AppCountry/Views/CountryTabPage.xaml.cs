@@ -15,6 +15,8 @@ namespace AppCountry.Views
         public CountryTabPage()
         {
             InitializeComponent();
+
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.DarkViolet;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace AppCountry.Droid
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);
+            
             LoadApplication(new App(new AndroidInitializer()));
         }
 

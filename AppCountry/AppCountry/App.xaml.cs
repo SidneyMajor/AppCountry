@@ -14,7 +14,7 @@ namespace AppCountry
     {
         public App(IPlatformInitializer initializer)
             : base(initializer)
-        {
+        {           
         }
 
         protected override async void OnInitialized()
@@ -23,7 +23,7 @@ namespace AppCountry
 
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/CountriesPage");
+            await NavigationService.NavigateAsync(nameof(MainPage));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

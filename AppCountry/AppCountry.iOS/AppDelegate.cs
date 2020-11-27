@@ -2,6 +2,9 @@
 using Foundation;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfCarousel.XForms.iOS;
+using Syncfusion.XForms.iOS.EffectsView;
 using UIKit;
 
 
@@ -24,6 +27,10 @@ namespace AppCountry.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
+            Syncfusion.XForms.iOS.Accordion.SfAccordionRenderer.Init();
+            SfListViewRenderer.Init();
+            SfEffectsViewRenderer.Init();
+            new SfCarouselRenderer();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

@@ -2,10 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppCountry.Views.MainPage"
+             xmlns:ffimaeloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+        <Image Source="world_flags_globe_2.gif" IsAnimationPlaying="true">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoCountriesCommand}"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Label
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            FontSize="Large"
+            FontAttributes="Bold"
+            TextColor="DarkViolet"
+            Margin="5"
+            Text="Go Countries">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoCountriesCommand}"/>                
+            </Label.GestureRecognizers>
+        </Label>
     </StackLayout>
 
 </ContentPage>

@@ -5,180 +5,203 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="AppCountry.Views.CovidInfoPage"
              IconImageSource="icons8_coronavirus.ico"
-            >
+            BackgroundColor="Silver">
 
 
     <ContentPage.Content>
 
-        <ScrollView>
-            <Grid RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+        <ScrollView >
+            <Frame
+                HasShadow="True" 
+                HorizontalOptions="Center" 
+                BorderColor="Brown" 
+                BackgroundColor="Azure" 
+                CornerRadius="30">
+                <StackLayout>
 
-                </Grid.RowDefinitions>
-
-
-                <Frame  Grid.Row="0" Margin="10" HasShadow="True"  BorderColor="Blue" BackgroundColor="Azure"  CornerRadius="20">
-
-                    <StackLayout >
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="1.5*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label HorizontalOptions="Start"
+                    <Frame  
+                        Margin="5"                    
+                        BackgroundColor="WhiteSmoke" 
+                        BorderColor="Brown" 
+                        CornerRadius="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        IsVisible="{Binding Country.HasNoInfoGovid}">
+                        <Label HorizontalOptions="CenterAndExpand"
                                 Grid.Column="0"
                                 Grid.Row="0"
-                                Text="Date: "
-                                FontSize="Medium"
-                                TextColor="Black">
-                            </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                Padding="2"
-                                Grid.Column="1"
-                                Grid.Row="0"
+                                Text="Information Not Available"
+                                FontSize="Small"
                                 FontAttributes="Bold"
-                                Text="{Binding Country.CovidCountry.Date,StringFormat='{0:MMMM dd, yyyy}'}"
-                                TextColor="Black"  >
-                            </Label>
+                                TextColor="Black"
+                           LineBreakMode="TailTruncation">
+                        </Label>
+                    </Frame>
+
+                    <Grid
+                        Margin="0,10,0,0"                   
+                        IsVisible="{Binding Country.HasInfoGovid}"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+                        <Frame                            
+                            Grid.Row="0"
+                            BackgroundColor="WhiteSmoke" 
+                            BorderColor="Brown" 
+                            CornerRadius="20">
                             <Label 
-                                HorizontalOptions="Start" 
-                                FontSize="Medium"
-                                Grid.Column="0"
-                                Grid.Row="1"
-                                Text="Confirmed: "
-                                TextColor="Black">
-                            </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                Padding="2"
-                                Grid.Column="1"
-                                Grid.Row="1"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Text="Country Coronavirus  Information"
+                                FontSize="Small"
                                 FontAttributes="Bold"
-                                Text="{Binding Country.CovidCountry.TotalConfirmed}"
-                                TextColor="Black"  LineBreakMode="TailTruncation">
+                                TextColor="Black"
+                                LineBreakMode="TailTruncation">
                             </Label>
-                            <Label  HorizontalOptions="StartAndExpand" 
-                                FontSize="Medium"
-                                Grid.Column="0"
-                                Grid.Row="2"
-                                Text= "Recovered: "
-                                TextColor="Black">
-                            </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                Padding="2"                    
-                                Grid.Column="1"
-                                Grid.Row="2"
-                                FontAttributes="Bold"
-                                Text="{Binding Country.CovidCountry.TotalRecovered}"
-                                TextColor="Black"  LineBreakMode="TailTruncation">
-                            </Label>
-                            <Label  HorizontalOptions="StartAndExpand" 
-                                    FontSize="Medium"
-                                Grid.Column="0"
-                                Grid.Row="3"
-                                Text="Deaths: "
-                                TextColor="Black">
-                            </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                   Padding="2"
-                                Grid.Column="1"
-                                Grid.Row="3"
-                                FontAttributes="Bold"
-                                Text="{Binding Country.CovidCountry.TotalDeaths}"
-                                TextColor="Black"  LineBreakMode="TailTruncation">
-                            </Label>
+                        </Frame>
 
-                        </Grid>
+                        <Frame  
+                            Grid.Row="1" 
+                            Margin="10" 
+                            HasShadow="True"  
+                            BorderColor="RosyBrown" 
+                            BackgroundColor="Azure"  
+                            CornerRadius="20">
+                            <StackLayout >
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                       
 
-                    </StackLayout>
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"                                
+                                        Grid.Row="0"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidCountry.Date,StringFormat='Date: {0:MMMM dd, yyyy}'}"
+                                        TextColor="Black">
+                                    </Label>
 
-                </Frame>
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"                                        
+                                        Grid.Row="1"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidCountry.TotalConfirmed, StringFormat='Confirmed: {0}'}"
+                                        TextColor="Black"  
+                                        LineBreakMode="TailTruncation">
+                                    </Label>
 
-                <Frame  Grid.Row="1" Margin="10" HasShadow="True" BorderColor="Blue" BackgroundColor="Azure"  CornerRadius="20">
-                    <StackLayout >
-                        <Grid >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="1.5*"/>
-                            </Grid.ColumnDefinitions>
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"
+                                        Grid.Row="2"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidCountry.TotalRecovered, StringFormat='Recovered: {0}'}"
+                                        TextColor="Black" 
+                                        LineBreakMode="TailTruncation">
+                                    </Label>
 
-                            <Label HorizontalOptions="Start"
-                                Grid.Column="0"
-                                Grid.Row="0"
-                                Text="Date: "
-                                FontSize="Medium"
-                                TextColor="Black">
-                            </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                Padding="2"
-                                Grid.Column="1"
-                                Grid.Row="0"
-                                FontAttributes="Bold"
-                                Text="{Binding Country.CovidGlobal.Date,StringFormat='{0:MMMM dd, yyyy}'}"
-                                TextColor="Black"  >
-                            </Label>
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"
+                                        Grid.Row="3"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidCountry.TotalDeaths, StringFormat='Deaths: {0}'}"
+                                        TextColor="Black"  
+                                        LineBreakMode="TailTruncation">
+                                    </Label>
+
+
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                        <Frame 
+                            Grid.Row="2" 
+                            BackgroundColor="WhiteSmoke" 
+                            BorderColor="Brown" 
+                            CornerRadius="20">
                             <Label 
-                                HorizontalOptions="Start" 
-                                FontSize="Medium"
-                                Grid.Column="0"
-                                Grid.Row="1"
-                                Text="Confirmed: "
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"                                
+                                Text="World Coronavirus  Information"
+                                FontSize="Small"
+                                FontAttributes="Bold"
                                 TextColor="Black">
                             </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                Padding="2"
-                                Grid.Column="1"
-                                Grid.Row="1"
-                                FontAttributes="Bold"
-                                Text="{Binding Country.CovidGlobal.TotalConfirmed}"
-                                TextColor="Black"  LineBreakMode="TailTruncation">
-                            </Label>
-                            <Label  HorizontalOptions="StartAndExpand" 
-                                FontSize="Medium"
-                                Grid.Column="0"
-                                Grid.Row="2"
-                                Text= "Recovered: "
-                                TextColor="Black">
-                            </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                Padding="2"                    
-                                Grid.Column="1"
-                                Grid.Row="2"
-                                FontAttributes="Bold"
-                                Text="{Binding Country.CovidGlobal.TotalRecovered}"
-                                TextColor="Black"  LineBreakMode="TailTruncation">
-                            </Label>
-                            <Label  HorizontalOptions="StartAndExpand" 
-                                    FontSize="Medium"
-                                Grid.Column="0"
-                                Grid.Row="3"
-                                Text="Deaths: "
-                                TextColor="Black">
-                            </Label>
-                            <Label HorizontalOptions="CenterAndExpand"
-                                   Padding="2"
-                                Grid.Column="1"
-                                Grid.Row="3"
-                                FontAttributes="Bold"
-                                Text="{Binding Country.CovidGlobal.TotalDeaths}"
-                                TextColor="Black"  LineBreakMode="TailTruncation">
-                            </Label>
+                        </Frame>
+                        <Frame  
+                            Grid.Row="3"
+                            Margin="10" 
+                            HasShadow="True" 
+                            BorderColor="RosyBrown" 
+                            BackgroundColor="Azure"  
+                            CornerRadius="20">
+                            <StackLayout >
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
 
-                        </Grid>
-                        
-                        
-                    </StackLayout>
-                </Frame>
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"                                
+                                        Grid.Row="0"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidGlobal.Date,StringFormat='Date: {0:MMMM dd, yyyy}'}"
+                                        TextColor="Black">    
+                                    </Label>
+                                   
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"                                        
+                                        Grid.Row="1"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidGlobal.TotalConfirmed, StringFormat='Confirmed: {0}'}"
+                                        TextColor="Black"  
+                                        LineBreakMode="TailTruncation">
+                                    </Label>
 
-            </Grid>
-            
-            
-            
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"
+                                        Grid.Row="2"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidGlobal.TotalRecovered, StringFormat='Recovered: {0}'}"
+                                        TextColor="Black" 
+                                        LineBreakMode="TailTruncation">  
+                                    </Label>
+
+                                    <Label 
+                                        HorizontalOptions="StartAndExpand"
+                                        Grid.Row="3"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Country.CovidGlobal.TotalDeaths, StringFormat='Deaths: {0}'}"
+                                        TextColor="Black"  
+                                        LineBreakMode="TailTruncation">
+                                    </Label>
+
+
+                                </Grid>
+
+
+                            </StackLayout>
+                        </Frame>
+
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+
+
+
         </ScrollView>
         
     </ContentPage.Content>

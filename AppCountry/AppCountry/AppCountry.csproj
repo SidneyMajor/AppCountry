@@ -6,7 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.3.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.3.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.3.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="18.3.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.3.0.51" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.3.0.51" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
